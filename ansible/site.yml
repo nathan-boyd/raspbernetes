@@ -1,0 +1,15 @@
+---
+# file: site.yml
+
+- hosts: all
+  roles:
+    - role: common
+
+- hosts: controller
+  roles:
+    - role: kubernetes_controller
+
+- hosts: nodes
+  roles:
+    - role: kubernetes_node
+

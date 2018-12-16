@@ -1,0 +1,7 @@
+---
+
+- name: Change default user password
+  user: 
+    name: pi
+    password: "{{ password | password_hash('sha512') }}"
+  become: yes
