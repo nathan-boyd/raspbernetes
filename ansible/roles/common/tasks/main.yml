@@ -18,3 +18,8 @@
     state: present
   become: yes
 
+- name: Install kubeadm 
+  apt:
+    name: kubeadm
+  become: yes
+
