@@ -5,3 +5,16 @@
     name: pi
     password: "{{ password | password_hash('sha512') }}"
   become: yes
+
+- name: Add k8s key
+  apt_key:
+    url: "https://packages.cloud.google.com/apt/doc/apt-key.gpg"
+    state: present
+  become: yes
+
+- name: Add k8s repositories
+  apt_repository:
+    repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
+    state: present
+  become: yes
+
