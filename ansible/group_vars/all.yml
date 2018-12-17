@@ -1,0 +1,6 @@
+token: fhskal.1h3g4h5d22ialugy
+podnet: 10.244.0.0/16
+kubernetes_package_version: "1.11.4-00"
+kubernetes_version: "v1.11.4"
+docker_ce_version: "18.05.0~ce~3-0~raspbian"
+flannel_version: "v0.10.0"
