@@ -36,14 +36,21 @@ Run ansible script
 cd ansible && ansible-playbook cluster.yml --extra-vars "password=NEW_PASSWORD"
 ```
 
-Copy Kubectl Config
+Copy Kubectl Config Locally
 ```sh
 mkdir $HOME/.kube
-sudo cp /etc/kubernetes/admin.conf . && chown pi raspbernetes.conf
-scp -r pi@192.168.1.101:/home/pi/admin.conf $HOME/.kube
+ssh pi@raspbernetes1
+sudo cp /etc/kubernetes/admin.conf ./raspbernetes.conf && chown pi raspbernetes.conf &&
+scp -r pi@raspbernetes1:/home/pi/admin.conf $HOME/.kube
 ```
 
 ADD KubeConfig Env Var
 ```sh
 export KUBECONFIG=$HOME/.kube/config:raspbernetes.conf
+```
+
+List K8s Nodes
+```sh
+kubectl config use-context kubernetes
+kubectl get nodes
 ```
