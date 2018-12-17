@@ -32,18 +32,18 @@ $ sudo umount /Volumes/boot/ssh
 ```
 
 Run ansible script
-```
-cd ansible $$ ansible-playbook cluster.yml --extra-vars "password=NEW_PASSWORD"
+```sh
+cd ansible && ansible-playbook cluster.yml --extra-vars "password=NEW_PASSWORD"
 ```
 
 Copy Kubectl Config
-```
+```sh
 mkdir $HOME/.kube
-sudo cp /etc/kubernetes/admin.conf . && chown pi admin.conf
+sudo cp /etc/kubernetes/admin.conf . && chown pi raspbernetes.conf
 scp -r pi@192.168.1.101:/home/pi/admin.conf $HOME/.kube
 ```
 
 ADD KubeConfig Env Var
-```
-export KUBECONFIG=$HOME/.kube/config:admin.conf
+```sh
+export KUBECONFIG=$HOME/.kube/config:raspbernetes.conf
 ```
