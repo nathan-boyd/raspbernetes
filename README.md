@@ -23,12 +23,12 @@ Flash with [Etcher](https://www.balena.io/etcher/)
 Enable SSH with 
 
 ```sh
-$ touch /Volumes/boot/ssh
+touch /Volumes/boot/ssh
 ```
 
 Eject the disk volume
 ```sh
-$ sudo umount /Volumes/boot/ssh
+sudo umount /Volumes/boot
 ```
 
 Run ansible script
