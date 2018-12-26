@@ -38,15 +38,7 @@ ansible-playbook -i <inventory-file> auth_keys.yml --ask-pass --extra-vars='pubk
 
 Run ansible script
 ```sh
-cd ansible && ansible-playbook cluster.yml --extra-vars "password=NEW_PASSWORD"
-```
-
-Copy Kubectl Config Locally
-```sh
-mkdir $HOME/.kube
-ssh pi@raspbernetes1
-sudo cp /etc/kubernetes/admin.conf ./raspbernetes.conf && chown pi raspbernetes.conf &&
-scp -r pi@raspbernetes1:/home/pi/raspbernetes.conf $HOME/.kube/raspbernetes.conf
+ansible-playbook cluster.yml --extra-vars "password=NEW_PASSWORD kube_dest=PATH_TO_LOCAL_KUBECONFIG"
 ```
 
 ADD KubeConfig Env Var
