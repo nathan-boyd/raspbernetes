@@ -33,7 +33,7 @@ sudo umount /Volumes/boot
 
 Add ssh keys
 ```
-ansible-playbook -i <inventory-file> auth_keys.yml --ask-pass --extra-vars='pubkey="<pubkey>" username="<username>"'
+ansible-playbook -i inventory auth_keys.yml --ask-pass --extra-vars='pubkey="$(echo ~/.ssh/id_ras.pub)" username="username"'
 ```
 
 Run ansible script
