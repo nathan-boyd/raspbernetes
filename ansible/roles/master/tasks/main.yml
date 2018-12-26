@@ -26,12 +26,14 @@
     mode: 0755
     remote_src: yes
     backup: yes
+  register: config_set
   when: kubeadm_init
 
 - name: Copy kubeconfig to local
-- fetch:
-    src: /root/.kube/config
-    dest: ~/.kube/raspbernetes.conf
+  fetch:
+    src: /etc/kubernetes/admin.conf
+    dest: "{{ kube_dest }}"
+  when: config_set.changed
 
 - name: Join Kubernetes Cluster
   shell: kubeadm join --ignore-preflight-errors=all --token {{ token }} {{ groups['master'][0] }}:6443 --discovery-token-unsafe-skip-ca-verification
