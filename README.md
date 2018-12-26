@@ -46,7 +46,7 @@ Copy Kubectl Config Locally
 mkdir $HOME/.kube
 ssh pi@raspbernetes1
 sudo cp /etc/kubernetes/admin.conf ./raspbernetes.conf && chown pi raspbernetes.conf &&
-scp -r pi@raspbernetes1:/home/pi/admin.conf $HOME/.kube
+scp -r pi@raspbernetes1:/home/pi/raspbernetes.conf $HOME/.kube/raspbernetes.conf
 ```
 
 ADD KubeConfig Env Var

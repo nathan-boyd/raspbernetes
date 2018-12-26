@@ -28,6 +28,11 @@
     backup: yes
   when: kubeadm_init
 
+- name: Copy kubeconfig to local
+- fetch:
+    src: /root/.kube/config
+    dest: ~/.kube/raspbernetes.conf
+
 - name: Join Kubernetes Cluster
   shell: kubeadm join --ignore-preflight-errors=all --token {{ token }} {{ groups['master'][0] }}:6443 --discovery-token-unsafe-skip-ca-verification
   when: kubeadm_reset is succeeded
