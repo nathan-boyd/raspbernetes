@@ -31,6 +31,11 @@ Eject the disk volume
 sudo umount /Volumes/boot
 ```
 
+Add ssh keys
+```
+ansible-playbook -i <inventory-file> auth_keys.yml --ask-pass --extra-vars='pubkey="<pubkey>" username="<username>"'
+```
+
 Run ansible script
 ```sh
 cd ansible && ansible-playbook cluster.yml --extra-vars "password=NEW_PASSWORD"
