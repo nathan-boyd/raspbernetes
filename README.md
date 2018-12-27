@@ -51,3 +51,25 @@ List K8s Nodes
 kubectl config use-context kubernetes
 kubectl get nodes
 ```
+
+Proxy Dashboard
+```
+kubectl proxy
+```
+
+Get token for dashboard
+```
+kubectl -n kube-system describe secrets \
+   `kubectl -n kube-system get secrets | awk '/clusterrole-aggregation-controller/ {print $1}'` \
+       | awk '/token:/ {print $2}'
+```
+
+Open Dashboard in browser: [Dashboard](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/login)
+
+Scratch
+On Master
+- install git
+- install go
+- install glide
+- build helm form source
+
