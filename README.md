@@ -67,9 +67,37 @@ kubectl -n kube-system describe secrets \
 Open Dashboard in browser: [Dashboard](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/login)
 
 Scratch
+
+### Helm
 On Master
-- install git
-- install go
-- install glide
-- build helm form source
+- install helm binary
+- add raspi tiller with 
+```
+helm init --tiller-image=jessestuart/tiller:v2.9.1
+```
+
+```
+# not for prod (binds sys account to helm)
+kubectl create clusterrolebinding add-on-cluster-admin --clusterrole=cluster-admin --serviceaccount=kube-system:default
+```
+
+### Setup NFS Server on PI
+
+#### Fix Locale Setting 
+``` 
+$ locale-gen en_US.UTF-8
+```
+
+```
+sudo apt-get install nfs-kernel-server nfs-common
+
+sudo systemctl enable nfs-kernel-server
+
+# Add following like to /etc/exports
+/mnt/extssd1/kube/ 192.168.1.*(rw,sync,no_subtree_check,no_root_squash)
+sudo exportfs -a
+```
+
+install on controller
+$ helm install stable/nfs-client-provisioner --set nfs.server=x.x.x.x --set nfs.path=/exported/path
 
