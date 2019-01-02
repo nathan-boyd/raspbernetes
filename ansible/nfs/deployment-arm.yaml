@@ -20,11 +20,11 @@ spec:
               mountPath: /persistentvolumes
           env:
             - name: PROVISIONER_NAME
-              value: fuseim.pri/ssd1
+              value: my_nfs
             - name: NFS_SERVER
-              value: 192.168.1.55
+              value: 192.168.1.25
             - name: NFS_PATH
-              value: /mnt/extssd1/kube
+              value: /srv/nfs4/kube
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -40,5 +40,5 @@ spec:
       volumes:
         - name: nfs-client-root
           nfs:
-            server: 192.168.1.55
-            path: /mnt/extssd1/kube
+            server: 192.168.1.25
+            path: /srv/nfs4/kube
